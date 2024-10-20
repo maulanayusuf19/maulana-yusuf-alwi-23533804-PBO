@@ -1,0 +1,42 @@
+package com.mycompany.mavenproject2;
+
+import java.util.Scanner;
+
+public class Mavenproject2 {
+   public Mavenproject2() {
+   }
+
+   public static void main(String[] args) {
+
+      String pilihanUser;  
+      System.out.println("Program Kalkulator Zakat Maal");
+
+       try (Scanner scanner = new Scanner(System.in)) {
+           do {
+               System.out.print("Masukkan jumlah harta (uang) yang Anda miliki: ");
+               
+               while (!scanner.hasNextDouble()) {
+                   System.out.println("Input tidak valid. Masukkan angka yang benar.");
+                   scanner.next();
+               }
+               
+               double jumlahHarta = scanner.nextDouble();
+               scanner.nextLine();
+               
+               // Nisab
+               if (jumlahHarta >= 6859394) {
+                   double zakatMaal = jumlahHarta * 0.025;
+                   System.out.printf("Jumlah zakat yang harus Anda bayarkan adalah: %.2f\n", zakatMaal);
+               } else {
+                   System.out.println("Jumlah harta belum mencapai nisab. Anda tidak wajib membayar zakat.");
+               }
+               
+               System.out.print("Apakah Anda ingin menghitung zakat lagi? (ya/tidak): ");
+               pilihanUser = scanner.nextLine();
+               
+           } while (pilihanUser.equalsIgnoreCase("ya"));
+           
+           System.out.println("Terima kasih telah menggunakan Program Kalkulator Zakat Maal.");
+       }
+   }
+}
